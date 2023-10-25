@@ -1,0 +1,241 @@
+{
+  "instruments": [
+    {
+      "name": "Piano",
+      "channel": "melody",
+      "sounds": [
+        { "kind": "sawtooth", "effects": [] },
+        { "kind": "pulse", "dutyCycle": 13, "effects": [] }
+      ],
+      "effects": [
+        {
+          "kind": "filterDecay",
+          "tension": 1,
+          "duration": 1,
+          "resonance": 0.5,
+          "initialFrequency": 10000,
+          "finalFrequency": 500
+        },
+        {
+          "kind": "amplitudeEnvelope",
+          "attack": 0.01,
+          "attackTension": 1,
+          "decay": 0.2,
+          "decayTension": 1,
+          "release": 0.1,
+          "releaseTension": 1,
+          "sustain": 0.4
+        }
+      ]
+    },
+    {
+      "name": "Pad",
+      "channel": "harmony",
+      "sounds": [{ "kind": "triangle", "effects": [] }],
+      "effects": [
+        {
+          "kind": "filterDecay",
+          "tension": 1,
+          "duration": 0.5,
+          "resonance": 0.9,
+          "initialFrequency": 500,
+          "finalFrequency": 100
+        },
+        {
+          "kind": "amplitudeEnvelope",
+          "attack": 0.1,
+          "decay": 0.2,
+          "release": 0.1,
+          "sustain": 0.4,
+          "attackTension": 1,
+          "decayTension": 1,
+          "releaseTension": 1
+        }
+      ]
+    },
+    {
+      "name": "Kick",
+      "channel": "kick",
+      "sounds": [{ "kind": "sine", "effects": [] }],
+      "effects": [
+        { "kind": "pitchSlide", "duration": 0.01, "level": 1 },
+        { "kind": "overdrive", "level": 2 },
+        {
+          "kind": "amplitudeEnvelope",
+          "attack": 0.01,
+          "decay": 0.1,
+          "release": 0,
+          "sustain": 0,
+          "attackTension": 1,
+          "decayTension": 1,
+          "releaseTension": 1
+        }
+      ]
+    },
+    {
+      "name": "Hi-Hat",
+      "channel": "hiHat",
+      "sounds": [{ "kind": "noise", "effects": [] }],
+      "effects": [
+        { "kind": "highPass", "resonance": 0.1, "frequency": 10000 },
+        {
+          "kind": "amplitudeEnvelope",
+          "attack": 0.01,
+          "decay": 0.08,
+          "release": 0,
+          "sustain": 0,
+          "attackTension": 1,
+          "decayTension": 1,
+          "releaseTension": 1
+        }
+      ]
+    },
+    {
+      "name": "Bass",
+      "channel": "bass",
+      "sounds": [{ "kind": "pulse", "dutyCycle": 13, "effects": [] }],
+      "effects": [
+        {
+          "kind": "filterDecay",
+          "tension": 1,
+          "duration": 0.5,
+          "resonance": 0.9,
+          "initialFrequency": 500,
+          "finalFrequency": 100
+        },
+        {
+          "kind": "amplitudeEnvelope",
+          "attack": 0.01,
+          "decay": 0.2,
+          "release": 0.1,
+          "sustain": 1,
+          "attackTension": 1,
+          "decayTension": 1,
+          "releaseTension": 1
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "kind": "global",
+      "effects": [
+        { "kind": "seed", "value": "unset" },
+        { "kind": "progression", "value": [0, 4, 5, 3] },
+        {
+          "kind": "structure",
+          "value": [
+            "intro",
+            "verse",
+            "chorus",
+            "verse",
+            "chorus",
+            "bridge",
+            "chorus",
+            "outro"
+          ]
+        },
+        { "kind": "scale" },
+        { "kind": "dynamic", "level": 15 },
+        { "kind": "compress", "hold": 0.01, "decay": 0.005 },
+        { "kind": "sideChain", "level": 0.1, "channel": "kick" }
+      ]
+    },
+    {
+      "kind": "intro",
+      "effects": [
+        { "kind": "sectionSize", "value": 1 },
+        { "kind": "assembly", "value": ["hiHat", "melody", "bass"] },
+        { "kind": "crescendo", "level": 0.1 }
+      ]
+    },
+    {
+      "kind": "verse",
+      "effects": [
+        { "kind": "sectionSize", "value": 2 },
+        {
+          "kind": "assembly",
+          "value": ["melody", "harmony", "bass", "hiHat", "kick"]
+        }
+      ]
+    },
+    {
+      "kind": "chorus",
+      "effects": [
+        { "kind": "sectionSize", "value": 2 },
+        {
+          "kind": "assembly",
+          "value": ["melody", "harmony", "bass", "hiHat", "kick", "snare"]
+        }
+      ]
+    },
+    {
+      "kind": "outro",
+      "effects": [
+        { "kind": "sectionSize", "value": 1 },
+        { "kind": "assembly", "value": ["melody", "harmony", "kick"] }
+      ]
+    },
+    {
+      "kind": "bridge",
+      "effects": [
+        { "kind": "sectionSize", "value": 2 },
+        { "kind": "assembly", "value": ["melody", "bass", "snare", "kick"] }
+      ]
+    },
+    {
+      "kind": "melody",
+      "effects": [
+        { "kind": "division", "value": 4 },
+        { "kind": "octave", "value": 4 },
+        { "kind": "randomPitch", "level": 6 },
+        { "kind": "joinByPitch" },
+        { "kind": "staccato", "level": 0.2 }
+      ]
+    },
+    {
+      "kind": "harmony",
+      "effects": [
+        { "kind": "division", "value": 2 },
+        { "kind": "chords" },
+        { "kind": "octave", "value": 3 },
+        { "kind": "staggerNotes", "level": 0.6 },
+        { "kind": "strum", "level": 0.05 }
+      ]
+    },
+    {
+      "kind": "bass",
+      "effects": [
+        { "kind": "division", "value": 2 },
+        { "kind": "octave", "value": 2 },
+        { "kind": "copyBass" },
+        { "kind": "staccato", "level": 0.2 }
+      ]
+    },
+    {
+      "kind": "kick",
+      "effects": [
+        { "kind": "division", "value": 2 },
+        { "kind": "octave", "value": 3 },
+        { "kind": "anticipateNotes", "beat": 3 },
+        { "kind": "setDuration", "value": 0.1 }
+      ]
+    },
+    {
+      "kind": "hiHat",
+      "effects": [
+        { "kind": "division", "value": 4 },
+        { "kind": "swing", "ratio": 1.1, "division": 5 },
+        { "kind": "alternateVelocities", "level": 0.1 }
+      ]
+    },
+    {
+      "kind": "snare",
+      "effects": [
+        { "kind": "division", "value": 2 },
+        { "kind": "octave", "value": 3 },
+        { "kind": "setDuration", "value": 0.1 }
+      ]
+    }
+  ]
+}
