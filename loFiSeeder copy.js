@@ -79,8 +79,6 @@ const a = {
   decayTension: 1,
   releaseTension: 1,
   kind: "global",
-  kind: "seed",
-  value: "unset",
   kind: "progression",
   kind: "structure",
   value: [
