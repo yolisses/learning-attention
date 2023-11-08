@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  jupyter:
+    image: tensorflow/tensorflow:latest-gpu-jupyter
+    container_name: jupyter
+    restart: always
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_TOKEN=no_token_please
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
